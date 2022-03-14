@@ -123,6 +123,7 @@ export default class DatePicker extends React.Component {
       excludeScrollbar: true,
       customTimeInput: null,
       calendarStartDay: undefined,
+      disableOnClickOutside: false,
     };
   }
 
@@ -284,6 +285,7 @@ export default class DatePicker extends React.Component {
     enableTabLoop: PropTypes.bool,
     customTimeInput: PropTypes.element,
     weekAriaLabelPrefix: PropTypes.string,
+    disableOnClickOutside: PropTypes.bool,
   };
 
   constructor(props) {
@@ -458,7 +460,7 @@ export default class DatePicker extends React.Component {
   };
 
   handleCalendarClickOutside = (event) => {
-    if (!this.props.inline) {
+    if (!this.props.inline && this.props.disableOnClickOutside === false) {
       this.setOpen(false);
     }
     this.props.onClickOutside(event);
